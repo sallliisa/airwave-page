@@ -55,6 +55,18 @@ a:focus-visible {
     linear-gradient(110deg, transparent 30%, #081e4510 57%, #04122b60 100%);
 }
 
+.airwave-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.landing-page .ambience::after {
+  background: linear-gradient(110deg, transparent 38%, #061a3b24 65%, #04142d38);
+}
+
 .wave {
   position: absolute;
   inset: -20%;
@@ -186,6 +198,51 @@ a:focus-visible {
   color: var(--muted);
 }
 
+.brew-install {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 6px 0 0;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.brew-install code {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 .6em;
+  min-width: 0;
+  font: 11px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  user-select: text;
+}
+
+.brew-install code span { white-space: nowrap; }
+.brew-install:hover { color: var(--ivory); }
+.brew-install:focus-visible { outline: 2px solid var(--ivory); outline-offset: 5px; }
+.brew-install svg { flex: 0 0 16px; width: 16px; height: 16px; }
+.brew-install .copied-icon { display: none; }
+.brew-install[data-state="copied"] .copy-icon { display: none; }
+.brew-install[data-state="copied"] .copied-icon { display: block; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .wordmark {
   grid-column: 1 / -1;
   margin: 0 0 -.045em -.018em;
@@ -228,6 +285,11 @@ a:focus-visible {
   .description { font-size: clamp(19px, 5.4vw, 27px); }
   .wordmark { font-size: 28.5vw; }
   .wave-primary { opacity: .7; }
+  .landing-page .main { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+  .landing-page .intro { width: 100%; min-width: 0; }
+  .landing-page .ambience::after {
+    background: linear-gradient(180deg, #061a3b08, #061a3b30 32%, #061a3b30 58%, #061a3b08);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
