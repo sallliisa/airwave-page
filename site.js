@@ -2,11 +2,10 @@ const background = document.querySelector(".airwave-background");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function reconcileMotion() {
-  if (reducedMotion.matches || document.visibilityState !== "visible") background.pauseAnimations();
-  else background.unpauseAnimations();
+  const canAnimate = !reducedMotion.matches && document.visibilityState === "visible";
+  background.style.animationPlayState = canAnimate ? "running" : "paused";
 }
 
-background.setCurrentTime(8);
 reconcileMotion();
 reducedMotion.addEventListener("change", reconcileMotion);
 document.addEventListener("visibilitychange", reconcileMotion);
