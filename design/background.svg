@@ -28,27 +28,8 @@
     <filter id="halo-depth-shadow-soft" color-interpolation-filters="sRGB" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="38"/></filter>
   </defs>
   <rect width="1600" height="1000" fill="url(#halo-depth-base)"/>
-  <path d="M-260 136C26 68 224 174 394 282C604 418 584 624 832 666C1042 702 1156 864 1208 1160H-260Z" fill="url(#halo-depth-volume)" filter="url(#halo-depth-volume-soft)"><animate attributeName="d" dur="86s" repeatCount="indefinite" values="M-260 136C26 68 224 174 394 282C604 418 584 624 832 666C1042 702 1156 864 1208 1160H-260Z;M-260 164C54 84 242 198 424 306C636 446 560 648 864 690C1076 730 1136 892 1236 1160H-260Z;M-260 136C26 68 224 174 394 282C604 418 584 624 832 666C1042 702 1156 864 1208 1160H-260Z" keyTimes="0;.5;1" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1"/></path>
-  <path d="M-220 530C44 444 188 434 352 518C516 602 550 758 794 824C1020 882 1078 1050 1160 1160H-220Z" fill="url(#halo-depth-submerged)" filter="url(#halo-depth-light-soft)"><animate attributeName="d" dur="86s" repeatCount="indefinite" values="M-220 530C44 444 188 434 352 518C516 602 550 758 794 824C1020 882 1078 1050 1160 1160H-220Z;M-220 554C76 462 214 458 382 542C544 632 578 784 826 850C1054 908 1054 1070 1188 1160H-220Z;M-220 530C44 444 188 434 352 518C516 602 550 758 794 824C1020 882 1078 1050 1160 1160H-220Z" keyTimes="0;.5;1" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1"/></path>
-  <path d="M592 212C776 140 1046 260 1080 450C1114 638 1012 796 846 800C676 806 570 688 584 524C598 378 462 290 592 212Z" fill="url(#halo-depth-shadow)" filter="url(#halo-depth-shadow-soft)"><animate attributeName="d" dur="86s" repeatCount="indefinite" values="M592 212C776 140 1046 260 1080 450C1114 638 1012 796 846 800C676 806 570 688 584 524C598 378 462 290 592 212Z;M620 230C804 158 1072 278 1100 476C1130 664 1038 818 872 822C702 830 590 710 610 548C624 402 490 308 620 230Z;M592 212C776 140 1046 260 1080 450C1114 638 1012 796 846 800C676 806 570 688 584 524C598 378 462 290 592 212Z" keyTimes="0;.5;1" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1"/></path>
+  <path d="M-260 136C26 68 224 174 394 282C604 418 584 624 832 666C1042 702 1156 864 1208 1160H-260Z" fill="url(#halo-depth-volume)" filter="url(#halo-depth-volume-soft)"/>
+  <path d="M-220 530C44 444 188 434 352 518C516 602 550 758 794 824C1020 882 1078 1050 1160 1160H-220Z" fill="url(#halo-depth-submerged)" filter="url(#halo-depth-light-soft)"/>
+  <path d="M592 212C776 140 1046 260 1080 450C1114 638 1012 796 846 800C676 806 570 688 584 524C598 378 462 290 592 212Z" fill="url(#halo-depth-shadow)" filter="url(#halo-depth-shadow-soft)"/>
   <rect width="1600" height="1000" fill="url(#halo-depth-shade)"/>
-
-  <defs>
-    <linearGradient id="halo-depth-halo-body" gradientUnits="userSpaceOnUse" x1="650" y1="-100" x2="-180" y2="760">
-      <stop stop-color="#345975" stop-opacity=".08"/><stop offset=".25" stop-color="#436c8c" stop-opacity=".36"/><stop offset=".55" stop-color="#4c7794" stop-opacity=".58"/><stop offset=".8" stop-color="#3d678b" stop-opacity=".3"/><stop offset="1" stop-color="#345975" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="halo-depth-halo-light" gradientUnits="userSpaceOnUse" x1="650" y1="-100" x2="-180" y2="760">
-      <stop stop-color="#7598a9" stop-opacity="0"/><stop offset=".2" stop-color="#7598a9" stop-opacity=".16"/><stop offset=".52" stop-color="#7598a9" stop-opacity=".58"/><stop offset=".78" stop-color="#63899f" stop-opacity=".22"/><stop offset="1" stop-color="#63899f" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="halo-depth-halo-shadow" gradientUnits="userSpaceOnUse" x1="650" y1="-100" x2="-180" y2="760">
-      <stop stop-color="#071e3e" stop-opacity="0"/><stop offset=".3" stop-color="#071e3e" stop-opacity=".2"/><stop offset=".65" stop-color="#071e3e" stop-opacity=".32"/><stop offset="1" stop-color="#071e3e" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="halo-depth-halo-soft" color-interpolation-filters="sRGB" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="28"/></filter>
-    <filter id="halo-depth-halo-rim" color-interpolation-filters="sRGB" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="12"/></filter>
-  </defs>
-  <g fill="none" stroke-linecap="round">
-    <path d="M590-190C750 70 540 340 310 490C90 630-140 710-320 770" transform="translate(31 14)" stroke="url(#halo-depth-halo-shadow)" stroke-width="94" filter="url(#halo-depth-halo-soft)"><animate attributeName="d" dur="86s" repeatCount="indefinite" values="M590-190C750 70 540 340 310 490C90 630-140 710-320 770;M610-180C770 94 568 360 335 512C110 650-118 728-300 786;M590-190C750 70 540 340 310 490C90 630-140 710-320 770" keyTimes="0;.5;1" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1"/></path>
-    <path d="M590-190C750 70 540 340 310 490C90 630-140 710-320 770" stroke="url(#halo-depth-halo-body)" stroke-width="118" filter="url(#halo-depth-halo-soft)"><animate attributeName="d" dur="86s" repeatCount="indefinite" values="M590-190C750 70 540 340 310 490C90 630-140 710-320 770;M610-180C770 94 568 360 335 512C110 650-118 728-300 786;M590-190C750 70 540 340 310 490C90 630-140 710-320 770" keyTimes="0;.5;1" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1"/></path>
-    <path d="M590-190C750 70 540 340 310 490C90 630-140 710-320 770" transform="translate(-11 -5)" stroke="url(#halo-depth-halo-light)" stroke-width="28" filter="url(#halo-depth-halo-rim)"><animate attributeName="d" dur="86s" repeatCount="indefinite" values="M590-190C750 70 540 340 310 490C90 630-140 710-320 770;M610-180C770 94 568 360 335 512C110 650-118 728-300 786;M590-190C750 70 540 340 310 490C90 630-140 710-320 770" keyTimes="0;.5;1" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1"/></path>
-  </g>
 </svg>

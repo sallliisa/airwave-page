@@ -3,10 +3,12 @@ const poster = ambience.querySelector(".airwave-background");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let halo;
 let frame;
+let frameRateTimer;
 let usePoster = navigator.deviceMemory < 4 || navigator.hardwareConcurrency < 4;
 
 function showPoster() {
   cancelAnimationFrame(frame);
+  clearTimeout(frameRateTimer);
   ambience.classList.remove("is-live");
   halo?.remove();
   halo = null;
@@ -21,9 +23,14 @@ function monitorFrameRate() {
     frames++;
     const elapsed = now - start;
     if (elapsed >= 1000) {
-      slowWindows = frames * 1000 / elapsed < 24 ? slowWindows + 1 : 0;
+      if (frames * 1000 / elapsed >= 24) {
+        // A healthy animation can run on the compositor between checks.
+        frameRateTimer = setTimeout(monitorFrameRate, 15000);
+        return;
+      }
       frames = 0;
       start = now;
+      slowWindows++;
       if (slowWindows >= 2) {
         usePoster = true;
         showPoster();
@@ -43,20 +50,19 @@ function reconcileMotion() {
   }
   if (halo) return;
 
-  const image = new Image();
-  halo = image;
-  image.alt = "";
-  image.className = "live-halo";
-  image.addEventListener("load", () => {
-    if (image !== halo) return;
-    ambience.classList.add("is-live");
-    monitorFrameRate();
-  });
-  image.addEventListener("error", () => {
-    if (image === halo) showPoster();
-  });
-  image.src = "design/background.svg";
-  ambience.append(image);
+  const template = document.querySelector("#live-background");
+  const layer = document.importNode(template.content.firstElementChild, true);
+  halo = layer;
+  ambience.append(layer);
+  Promise.all(Array.from(layer.querySelectorAll("img"), image => image.decode()))
+    .then(() => {
+      if (layer !== halo) return;
+      ambience.classList.add("is-live");
+      monitorFrameRate();
+    })
+    .catch(() => {
+      if (layer === halo) showPoster();
+    });
 }
 
 reconcileMotion();
