@@ -49,20 +49,23 @@ a:focus-visible {
 
 .airwave-background {
   position: absolute;
-  inset: -1%;
-  width: 102%;
-  height: 102%;
-  animation: background-drift 43s ease-in-out infinite alternate;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .live-halo {
   position: absolute;
   inset: 0;
-  visibility: hidden;
+  isolation: isolate;
+  opacity: 0;
+  transition: opacity 320ms ease-out;
 }
 
-.ambience.is-live .live-halo { visibility: visible; }
-.ambience.is-live picture { display: none; }
+.ambience.is-live .live-halo { opacity: 1; }
+.ambience.is-live .halo-rim { animation-play-state: paused; }
+.ambience.is-live .live-halo.is-moving .halo-rim { animation-play-state: running; }
+.ambience:has(.live-halo.is-moving) picture { visibility: hidden; }
 
 .halo-field {
   position: absolute;
@@ -90,14 +93,14 @@ a:focus-visible {
   to { transform: translate3d(8%, 5.5%, 0) scale(1.06, 1); }
 }
 
-.ambience.is-live::after {
+.live-halo::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(110deg, transparent 38%, #061a3b24 65%, #04142d38);
 }
 
-.ambience.is-live::before {
+.live-halo::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -105,11 +108,6 @@ a:focus-visible {
   background: url("assets/grain.png") repeat;
   mix-blend-mode: overlay;
   opacity: .11;
-}
-
-@keyframes background-drift {
-  from { transform: translate3d(-.6%, -.4%, 0); }
-  to { transform: translate3d(.6%, .4%, 0); }
 }
 
 .page {
@@ -261,7 +259,7 @@ a:focus-visible {
 }
 
 @media (max-width: 640px) {
-  .ambience.is-live::before { opacity: .15; }
+  .live-halo::before { opacity: .15; }
   .navigation { gap: 24px; }
   .main { grid-template-columns: minmax(0, 1fr); }
   .intro { grid-column: 1; justify-self: start; }
@@ -288,8 +286,4 @@ a:focus-visible {
   .description { font-size: 18px; line-height: 1.2; }
   .installation { margin-top: 12px; }
   .brew-install { margin-top: 8px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .airwave-background { animation: none; }
 }

@@ -1,5 +1,4 @@
 const ambience = document.querySelector(".ambience");
-const poster = ambience.querySelector(".airwave-background");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let halo;
 let frame;
@@ -43,7 +42,6 @@ function monitorFrameRate() {
 }
 
 function reconcileMotion() {
-  poster.style.animationPlayState = document.hidden ? "paused" : "running";
   if (document.hidden || usePoster || reducedMotion.matches || navigator.connection?.saveData) {
     showPoster();
     return;
@@ -54,9 +52,18 @@ function reconcileMotion() {
   const layer = document.importNode(template.content.firstElementChild, true);
   halo = layer;
   ambience.append(layer);
-  Promise.all(Array.from(layer.querySelectorAll("img"), image => image.decode()))
+  const grain = new Image();
+  grain.src = "assets/grain.png";
+  Promise.all([...layer.querySelectorAll("img"), grain].map(image => image.decode()))
     .then(() => {
       if (layer !== halo) return;
+      layer.addEventListener("transitionend", event => {
+        if (event.target === layer && event.propertyName === "opacity") {
+          layer.classList.add("is-moving");
+        }
+      });
+      // Establish the transparent state even when the images were cached.
+      getComputedStyle(layer).opacity;
       ambience.classList.add("is-live");
       monitorFrameRate();
     })
