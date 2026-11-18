@@ -18,10 +18,12 @@
     <script src="site.js" defer></script>
   </head>
   <body>
-    <picture class="ambience" aria-hidden="true">
-      <source media="(max-width: 640px)" srcset="assets/background-phone.webp">
-      <img class="airwave-background" src="assets/background-desktop.webp" alt="" fetchpriority="high">
-    </picture>
+    <div class="ambience" aria-hidden="true" inert>
+      <picture>
+        <source media="(max-width: 640px)" srcset="assets/background-phone.webp">
+        <img class="airwave-background" src="assets/background-desktop.webp" alt="" fetchpriority="high">
+      </picture>
+    </div>
 
     <div class="page">
       <header class="header">

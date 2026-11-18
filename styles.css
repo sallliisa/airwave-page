@@ -55,6 +55,34 @@ a:focus-visible {
   animation: background-drift 43s ease-in-out infinite alternate;
 }
 
+.live-halo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.ambience.is-live .live-halo { opacity: 1; }
+.ambience.is-live picture { display: none; }
+
+.ambience.is-live::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 38%, #061a3b24 65%, #04142d38);
+}
+
+.ambience.is-live::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: url("assets/noise.svg") repeat;
+  mix-blend-mode: overlay;
+  opacity: .17;
+}
+
 @keyframes background-drift {
   from { transform: translate3d(-.6%, -.4%, 0); }
   to { transform: translate3d(.6%, .4%, 0); }
