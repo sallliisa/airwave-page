@@ -81,12 +81,13 @@ a:focus-visible {
 }
 
 .is-live .halo-rim {
-  animation: halo-drift 43s steps(240, end) infinite alternate;
+  transform-origin: 36% 18%;
+  animation: halo-drift 25s cubic-bezier(.37, 0, .63, 1) -5s infinite alternate;
 }
 
 @keyframes halo-drift {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(3%, 2.4%, 0); }
+  from { transform: translate3d(-8%, -5%, 0) scale(1, 1.025); }
+  to { transform: translate3d(8%, 5.5%, 0) scale(1.06, 1); }
 }
 
 .ambience.is-live::after {
@@ -101,9 +102,9 @@ a:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: url("assets/noise.svg") repeat;
+  background: url("assets/grain.png") repeat;
   mix-blend-mode: overlay;
-  opacity: .17;
+  opacity: .11;
 }
 
 @keyframes background-drift {
@@ -260,6 +261,7 @@ a:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .ambience.is-live::before { opacity: .15; }
   .navigation { gap: 24px; }
   .main { grid-template-columns: minmax(0, 1fr); }
   .intro { grid-column: 1; justify-self: start; }
